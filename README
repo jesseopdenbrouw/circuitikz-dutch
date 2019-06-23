@@ -1,0 +1,27 @@
+
+circuitikz-dutch -- Drawing electric circuits in Dutch textbooks
+
+
+This package sets up CircuiTiKZ to draw electric circuits with the conventions
+used in Dutch textbooks.
+
+Usage: \usepackage{circuitikz-dutch}
+
+Changes to the CircuiTiKZ package:
+
+* Voltage sources have `+' and `$-$' glyphs left or right;
+* Current sources have an arrow left or right;
+* Resistors are of European type;
+* Inductors are of American type;
+* Voltages across components have `+' and `$-$' glyphs left or right;
+* Line width is set to 1 pt for all TiKZ pictures;
+* Relative thickness of bipoles, tripoles and quadpoles are set to 1;
+* The proportions of the components are set to better proportions;
+* The package \texttt{siunitx} is loaded;
+
+Please do not load circuitikz manually, circuitikz-dutch will load it
+automatically.
+
+
+Any comments can be mailed to J.E.J.opdenBrouw@hhs.nl
+

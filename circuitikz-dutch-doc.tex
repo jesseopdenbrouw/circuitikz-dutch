@@ -1,0 +1,382 @@
+% !TeX encoding = UTF-8
+% !TeX TS-program = pdflatex
+% !TeX spellcheck = en_GB
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+%% circuitikz=dutch.tex
+%%
+%% This is the user's guide for the circuitikz-dutch package, 
+%% by Jesse op den Brouw
+%%
+%% The package itself is in the file circuitikz-dutch.sty.
+
+
+%% Copyright (c)2019, Jesse E. J. op den Brouw
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX 
+%% version 2003/12/01 or later.
+%%
+%% This work consists of the files circuitikz-dutch.sty and
+%% circuitikz-dutch-doc.tex 
+
+%% This software is provided 'as is', without warranty of any kind,
+%% either expressed or implied, including, but not limited to, the
+%% implied warranties of merchantability and fitness for a
+%% particular purpose.
+
+%% Jesse op den Brouw
+%% Department of Electrical Engineering
+%% The Hague University of Applied Sciences
+%% Rotterdamseweg 137, 2628 AL, Delft
+%% Netherlands
+%% J.E.J.opdenBrouw@hhs.nl
+
+%% The newest version of this package should always be available
+%% from 
+
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{parskip}
+\usepackage{float}
+\usepackage[font=footnotesize,format=plain,labelfont=bf,up,textfont=sl,up]{caption}
+\usepackage[labelformat=simple,font=footnotesize,format=plain,labelfont=bf,textfont=sl]{subcaption}
+\captionsetup[figure]{justification=centering,singlelinecheck=off,belowskip=-1ex}
+\captionsetup[table]{justification=centering,singlelinecheck=off,skip=1ex}
+\captionsetup[subtable]{justification=centering,singlelinecheck=off,skip=3pt}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\renewcommand\thesubtable{(\alph{subtable})}
+
+%% Use the Charter font + math symbols
+\usepackage[scaled=0.9]{nimbusmono}
+\usepackage[bitstream-charter]{mathdesign}
+%% Use microtype
+\usepackage[stretch=10]{microtype}
+
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{textcomp}
+
+\usepackage{url}
+\lstset{ %
+  language=[AlLaTeX]TeX,
+  basicstyle=\small\ttfamily,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,                           
+  numbersep=8pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=none,
+  rulecolor=\color{gray},
+  tabsize=4,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=true,
+  title=\lstname,
+  upquote=true,
+  aboveskip=\baselineskip,
+  belowskip=-\baselineskip,
+  escapeinside={(*}{*)},
+}
+
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\urlstyle{tt}
+
+\usepackage{circuitikz-dutch}
+
+\author{Jesse op den Brouw*\thanks{* Version 0.1, The Hague University of Applied Sciences, \href{mailto:J.E.J.opdenBrouw@hhs.nl}{\texttt{J.E.J.opdenBrouw@hhs.nl}}}}
+\title{\Huge \texttt{circuitikz-dutch} \\[1.5ex]\Large Drawing electric circuits in Dutch textbooks}
+\date{\today}
+
+\def\Circuitikz{CircuiTi\emph{k}Z}
+
+\begin{document}
+\maketitle
+
+This package sets up \Circuitikz{} to draw electric circuits with the conventions used in Dutch textbooks. After loading the \texttt{circuitikz} package, a number of patches will be applied to \Circuitikz{} commands.
+
+\subsubsection*{License and warranty}
+This work may be distributed and/or modified under the
+conditions of the \LaTeX{} Project Public
+License, either version~1.3 of this
+license or (at your option) any later version. The latest version
+of this license is in \url{http://www.latex-project.org/lppl.txt}
+and version 1.3 or later is part of all distributions of \LaTeX{}
+version 2003/12/01 or later.
+
+This work has the LPPL maintenance status ``author-maintained''.
+
+This work consists of the files \texttt{circuitikz-dutch.sty}
+and \texttt{circuitikz-dutch-doc.tex}
+
+This software is provided `as is', without warranty of any kind,
+either expressed or implied, including, but not limited to, the
+implied warranties of merchantability and fitness for a
+particular purpose.
+
+\subsubsection*{Package loading}
+Load the package by:
+
+\begin{lstlisting}
+\usepackage{circuitikz-dutch}
+\end{lstlisting}
+
+The package has no options. \Circuitikz{} will be loaded by this package. Please
+\textbf{do not} (re)load \Circuitikz{} after this package.
+
+\subsubsection*{The symbols}
+ The symbols for voltage source, current source, resistor, capacitor and inductor are shown in Figure~\ref{symbols1}.
+
+
+\begin{figure}[!ht]
+\centering
+\begin{circuitikz}
+\draw (0,0) to[V=$U$] ++(0,2);
+\draw (3,0) to[I,label=$I$] ++(0,2);
+\draw (6,0) to[R=$R$] ++(0,2);
+\draw (9,0) to[C=$C$] ++(0,2);
+\draw (12,0) to[L=$L$] ++(0,2);
+\end{circuitikz}
+\caption{Dutch symbols for voltage source, current source, resistor, capacitor and inductor.}
+\label{symbols1}
+\end{figure}
+
+The \Circuitikz{} code to produce these symbols is shown below:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (0,0) to[V=$U$] ++(0,2);        % independent voltage source
+\draw (2,0) to[I,label=$I$] ++(0,2);  % independent current source
+\draw (4,0) to[R=$R$] ++(0,2);        % resistor
+\draw (6,0) to[C=$C$] ++(0,2);        % capacitor
+\draw (8,0) to[L=$L$] ++(0,2);        % inductor
+\end{circuitikz}
+\end{lstlisting}
+
+\textbf{Note:} due to the present current drawing strategy, it's mandatory that you use a label when specifying the source's current. See Figure~\ref{symbols2} below for the differences.
+
+\begin{figure}[!ht]
+\centering
+\begin{circuitikz}
+\draw (3,0) to[I,label=$I$] ++(0,2);
+\draw (6,0) to[I=$I$] ++(0,2);
+\end{circuitikz}
+\caption{Differences in drawing current sources.}
+\label{symbols2}
+\end{figure}
+
+The \Circuitikz{} code to produce these symbols is shown below:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (3,0) to[I,label=$I$] ++(0,2);
+\draw (6,0) to[I=$I$] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+In Figure~\ref{symbols3}, the dependent voltage and current sources are shown:
+
+\begin{figure}[!ht]
+\centering
+\begin{circuitikz}
+\draw (0,0) to[cvsource=$\alpha U$] ++(0,2);
+\draw (3,0) to[cvsource=$\beta I$] ++(0,2);
+\draw (6,0) to[cisource,label=$\gamma U$] ++(0,2);
+\draw (9,0) to[cisource,label=$\delta I$] ++(0,2);
+\end{circuitikz}
+\caption{Symbols for dependant sources.}
+\label{symbols3}
+\end{figure}
+
+The code is shown below:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (0,0) to[cvsource=$\alpha U$] ++(0,2);
+\draw (3,0) to[cvsource=$\beta I$] ++(0,2);
+\draw (6,0) to[cisource,label=$\gamma U$] ++(0,2);
+\draw (9,0) to[cisource,label=$\delta I$] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+Sinusiodal sources are shown below:
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}
+\draw (0,0) to[sV=$\hat{u}\,\mathrm{e}^{\,\mathrm{j}\varphi}$] ++(0,2);
+\draw (3,0) to[sI,label=$\hat{\imath}\,\mathrm{e}^{\,\mathrm{j}\varphi}$] ++(0,2);
+\end{circuitikz}
+\caption{Symbols for sinusiodal sources.}
+\label{symbols5}
+\end{figure}
+
+Code to produce these symbols:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (0,0) to[sV=$\hat{u}\,\mathrm{e}^{\,\mathrm{j}\varphi}$] ++(0,2);
+\draw (3,0) to[sI,label=$\hat{\imath}\,\mathrm{e}^{\,\mathrm{j}\varphi}$] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+Batteries are shown in Figure~\ref{symbols7}.
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}
+\draw (3,0) to[battery=$U$,invert] ++(0,2);
+\draw (6,0) to[battery1=$U$,invert] ++(0,2);
+\draw (9,0) to[battery2=$U$,invert] ++(0,2);
+\end{circuitikz}
+\caption{Symbols for batteries.}
+\label{symbols7}
+\end{figure}
+
+Code to produce these symbols:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (3,0) to[battery=$U$,invert] ++(0,2);
+\draw (6,0) to[battery1=$U$,invert] ++(0,2);
+\draw (9,0) to[battery2=$U$,invert] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+Voltages across components are displayed with `+' and `$-$', as shown in Figure~\ref{symbols6}.
+
+\begin{figure}[!ht]
+\centering
+\begin{circuitikz}
+\draw (0,0) to[R=$R$, v<=$U_R$] ++(0,2);
+\draw (3,0) to[C=$C$, v<=$U_C$] ++(0,2);
+\draw (6,0) to[L=$L$, v<=$U_L$] ++(0,2);
+\draw (9,0) to[I,label=$I$, v<=$U_I$] ++(0,2);
+\end{circuitikz}
+\caption{Symbols with voltages.}
+\label{symbols6}
+\end{figure}
+
+The code to produce the symbols is shown below:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (0,0) to[R=$R$, v<=$U_R$] ++(0,2);
+\draw (3,0) to[C=$C$, v<=$U_C$] ++(0,2);
+\draw (6,0) to[L=$L$, v<=$U_L$] ++(0,2);
+\draw (9,0) to[I,label=$I$, v<=$U_I$] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+\subsubsection*{Displaying values and units}
+
+You can use the \href{https://ctan.org/pkg/siunitx}{\texttt{siunitx}} package to put values and units to the symbols:
+
+\begin{figure}[!ht]
+\centering
+\begin{circuitikz}
+\draw (0,0) to[V=\SI{12}{\volt}] ++(0,2);
+\draw (3,0) to[I,label=\SI{10}{\milli\ampere}] ++(0,2);
+\draw (6,0) to[R=\SI{22}{\kilo\ohm}] ++(0,2);
+\draw (9,0) to[C=\SI{47}{\nano\farad}] ++(0,2);
+\draw (12,0) to[L=\SI{15}{\micro\henry}] ++(0,2);
+\end{circuitikz}
+\caption{Symbols with values and units.}
+\label{symbols4}
+\end{figure}
+
+The code to produce these symbols:
+
+\begin{lstlisting}
+\begin{circuitikz}
+\draw (0,0) to[V=\SI{12}{\volt}] ++(0,2);
+\draw (3,0) to[I,label=\SI{10}{\milli\ampere}] ++(0,2);
+\draw (6,0) to[R=\SI{22}{\kilo\ohm}] ++(0,2);
+\draw (9,0) to[C=\SI{47}{\nano\farad}] ++(0,2);
+\draw (12,0) to[L=\SI{15}{\micro\henry}] ++(0,2);
+\end{circuitikz}
+\end{lstlisting}
+
+\subsubsection*{Changes to the \texttt{circuitikz} package}
+The \texttt{circuitikz-dutch} package changes the following:
+
+\begin{itemize}
+\item Voltage sources have `+' and `$-$' glyphs left or right;
+\item Current sources have an arrow left or right;
+\item Resistors are of European type;
+\item Inductors are of American type;
+\item Voltages across components have `+' and `$-$' glyphs left or right;
+\item Line width is set to 1 pt for all Ti\emph{k}Z pictures;
+\item Relative thickness of bipoles, tripoles and quadpoles are set to 1;
+\item The proportions of the components are set to better proportions;
+\item The package \texttt{siunitx} is loaded;
+\end{itemize}
+
+
+\subsubsection*{Example network}
+
+In Figure~\ref{fig:gelmodelopampinverter} you see a network with a simplified model of an opamp.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.25]
+\draw (0,0) to[V, v=$U$]        ++(0,2) node[above] {$U_1$}
+            to[R, R=$G_1$, -*]   ++(2,0) node (2) {} node[below] {$U_x$}
+        (2) to[short] ++(1,0)
+            to[open] ++(0,-2)
+            to[R, a=$G_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
+        (2) to[short] ++(0,1)
+            to[R=$G_2$] ++(5.5,0)
+            to[short, -*] ++(0,-1)  node (3) {} %node[right] {$U_{2}$}
+			to[short, -o] ++(0.5,0) node[right] {$U_{2}$}
+        (3) to[R=$G_{out}$]  ++(-2,0)  node [above] {$U_y$}
+            to[cV, v_<=$aU_{in}$, -*] ++(0,-2)
+			to[open] ++(2.5,0)
+            to[short, o-.] (0,0)
+;
+\end{tikzpicture}
+\caption{Network with a simplified model of an opamp.}
+\label{fig:gelmodelopampinverter}
+\end{figure}
+
+The code to produce this circuit is show below:
+
+\begin{lstlisting}
+\begin{tikzpicture}[scale=1.25]
+\draw (0,0) to[V, v=$U$] ++(0,2) node[above] {$U_1$}
+            to[R, R=$G_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
+        (2) to[short] ++(1,0)
+            to[open] ++(0,-2)
+            to[R, a=$G_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
+        (2) to[short] ++(0,1)
+            to[R=$G_2$] ++(5.5,0)
+            to[short, -*] ++(0,-1) node (3) {}
+			to[short, -o] ++(0.5,0) node[right] {$U_{2}$}
+        (3) to[R=$G_{out}$]  ++(-2,0) node [above] {$U_y$}
+            to[cV, v_<=$aU_{in}$, -*] ++(0,-2)
+			to[open] ++(2.5,0)
+            to[short, o-.] (0,0)
+;
+\end{tikzpicture}
+\end{lstlisting}
+\subsubsection*{Changelog}
+
+\begin{table}[!ht]
+\begin{tabular}{lll}
+\textbf{Version} & \textbf{Date} & \textbf{What} \\
+v0.1    & 2019/06/23 & First release
+\end{tabular}
+\end{table}
+
+
+
+\end{document}
