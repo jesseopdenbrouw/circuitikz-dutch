@@ -3,7 +3,7 @@ circuitikz-dutch -- Drawing electric circuits in Dutch textbooks
 
 
 This package sets up CircuiTiKZ to draw electric circuits with the conventions
-used in Dutch textbooks.
+used in Dutch textbooks. This package needs CircuiTiKZ 1.0.1.
 
 Usage: \usepackage{circuitikz-dutch}
 
