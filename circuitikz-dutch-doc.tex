@@ -4,7 +4,8 @@
 
 %%--------------------------------------------------------------------
 %%--------------------------------------------------------------------
-%% circuitikz=dutch.tex
+%%
+%% circuitikz=dutch-doc.tex version 0.1
 %%
 %% This is the user's guide for the circuitikz-dutch package, 
 %% by Jesse op den Brouw
@@ -38,12 +39,12 @@
 %% J.E.J.opdenBrouw@hhs.nl
 
 %% The newest version of this package should always be available
-%% from 
+%% from https://github.com/jesseopdenbrouw/circuitikz-dutch
 
 
 \documentclass[12pt]{article}
 
-\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3.5cm]{geometry}
 \usepackage{parskip}
 \usepackage{float}
 \usepackage[font=footnotesize,format=plain,labelfont=bf,up,textfont=sl,up]{caption}
@@ -102,7 +103,10 @@
 \begin{document}
 \maketitle
 
-This package sets up \Circuitikz{} to draw electric circuits with the conventions used in Dutch textbooks. After loading the \texttt{circuitikz} package, a number of patches will be applied to \Circuitikz{} commands.
+This package sets up \Circuitikz{} to draw electric circuits with the
+conventions used in Dutch textbooks. After loading the \texttt{circuitikz}
+package, a number of patches will be applied to \Circuitikz{} commands.
+
 
 \subsubsection*{License and warranty}
 This work may be distributed and/or modified under the
@@ -257,10 +261,10 @@ Voltages across components are displayed with `+' and `$-$', as shown in Figure~
 \begin{figure}[!ht]
 \centering
 \begin{circuitikz}
-\draw (0,0) to[R=$R$, v<=$U_R$] ++(0,2);
-\draw (3,0) to[C=$C$, v<=$U_C$] ++(0,2);
-\draw (6,0) to[L=$L$, v<=$U_L$] ++(0,2);
-\draw (9,0) to[I,label=$I$, v<=$U_I$] ++(0,2);
+\draw (0,0) to[R=$R$, v=$U_R$] ++(0,2);
+\draw (3,0) to[C=$C$, v=$U_C$] ++(0,2);
+\draw (6,0) to[L=$L$, v=$U_L$] ++(0,2);
+\draw (9,0) to[I,label=$I$, v>=$U_I$] ++(0,2);
 \end{circuitikz}
 \caption{Symbols with voltages.}
 \label{symbols6}
@@ -270,10 +274,10 @@ The code to produce the symbols is shown below:
 
 \begin{lstlisting}
 \begin{circuitikz}
-\draw (0,0) to[R=$R$, v<=$U_R$] ++(0,2);
-\draw (3,0) to[C=$C$, v<=$U_C$] ++(0,2);
-\draw (6,0) to[L=$L$, v<=$U_L$] ++(0,2);
-\draw (9,0) to[I,label=$I$, v<=$U_I$] ++(0,2);
+\draw (0,0) to[R=$R$, v=$U_R$] ++(0,2);
+\draw (3,0) to[C=$C$, v=$U_C$] ++(0,2);
+\draw (6,0) to[L=$L$, v=$U_L$] ++(0,2);
+\draw (9,0) to[I,label=$I$, v>=$U_I$] ++(0,2);
 \end{circuitikz}
 \end{lstlisting}
 
@@ -329,17 +333,17 @@ In Figure~\ref{fig:gelmodelopampinverter} you see a network with a simplified mo
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[scale=1.25]
-\draw (0,0) to[V, v=$U$]        ++(0,2) node[above] {$U_1$}
-            to[R, R=$G_1$, -*]   ++(2,0) node (2) {} node[below] {$U_x$}
+\draw (0,0) to[V, v=$U$] ++(0,2) node[above] {$U_1$}
+            to[R, R=$R_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
         (2) to[short] ++(1,0)
             to[open] ++(0,-2)
-            to[R, a=$G_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
+            to[R, a=$R_{in}$, v^<=$U_{in}$,*-] ++(0,2) 
         (2) to[short] ++(0,1)
-            to[R=$G_2$] ++(5.5,0)
-            to[short, -*] ++(0,-1)  node (3) {} %node[right] {$U_{2}$}
-			to[short, -o] ++(0.5,0) node[right] {$U_{2}$}
-        (3) to[R=$G_{out}$]  ++(-2,0)  node [above] {$U_y$}
-            to[cV, v_<=$aU_{in}$, -*] ++(0,-2)
+            to[R=$R_2$] ++(5.5,0)
+            to[short,-*] ++(0,-1) node (3) {}
+			to[short,-o] ++(0.5,0) node[right] {$U_{2}$}
+        (3) to[R=$R_{out}$] ++(-2,0)  node [above] {$U_y$}
+            to[cV, v_<=$aU_{in}$,-*] ++(0,-2)
 			to[open] ++(2.5,0)
             to[short, o-.] (0,0)
 ;
@@ -353,16 +357,16 @@ The code to produce this circuit is show below:
 \begin{lstlisting}
 \begin{tikzpicture}[scale=1.25]
 \draw (0,0) to[V, v=$U$] ++(0,2) node[above] {$U_1$}
-            to[R, R=$G_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
+            to[R, R=$R_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
         (2) to[short] ++(1,0)
             to[open] ++(0,-2)
-            to[R, a=$G_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
+            to[R, a=$R_{in}$, v^<=$U_{in}$,*-] ++(0,2) 
         (2) to[short] ++(0,1)
-            to[R=$G_2$] ++(5.5,0)
-            to[short, -*] ++(0,-1) node (3) {}
-			to[short, -o] ++(0.5,0) node[right] {$U_{2}$}
-        (3) to[R=$G_{out}$]  ++(-2,0) node [above] {$U_y$}
-            to[cV, v_<=$aU_{in}$, -*] ++(0,-2)
+            to[R=$R_2$] ++(5.5,0)
+            to[short,-*] ++(0,-1) node (3) {}
+			to[short,-o] ++(0.5,0) node[right] {$U_{2}$}
+        (3) to[R=$R_{out}$] ++(-2,0)  node [above] {$U_y$}
+            to[cV, v_<=$aU_{in}$,-*] ++(0,-2)
 			to[open] ++(2.5,0)
             to[short, o-.] (0,0)
 ;
@@ -373,7 +377,7 @@ The code to produce this circuit is show below:
 \begin{table}[!ht]
 \begin{tabular}{lll}
 \textbf{Version} & \textbf{Date} & \textbf{What} \\
-v0.1    & 2019/06/23 & First release
+v0.1    & 2020/03/08 & First release
 \end{tabular}
 \end{table}
 
