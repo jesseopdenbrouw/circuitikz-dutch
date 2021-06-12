@@ -432,14 +432,14 @@
 %                (\pgfcirc@a@prefix-Vto)
                 \ifpgf@circ@oldvoltagedirection
                     (\pgfcirc@a@prefix-Vfrom) node[inner sep=0, node font=\pgf@circ@avfont,
-                        anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avplus}
-                    (\pgfcirc@a@prefix-Vto) node[inner sep=0, node font=\pgf@circ@avfont,
                         anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avminus}
+                    (\pgfcirc@a@prefix-Vto) node[inner sep=0, node font=\pgf@circ@avfont,
+                        anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avplus}
                 \else
                     (\pgfcirc@a@prefix-Vfrom) node[inner sep=0, node font=\pgf@circ@avfont,
-                        anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avminus}
-                    (\pgfcirc@a@prefix-Vto) node[inner sep=0, node font=\pgf@circ@avfont,
                         anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avplus}
+                    (\pgfcirc@a@prefix-Vto) node[inner sep=0, node font=\pgf@circ@avfont,
+                        anchor=\pgf@circ@bipole@voltage@label@anchor]{\pgf@circ@avminus}
                 \fi
             \fi
         \fi
