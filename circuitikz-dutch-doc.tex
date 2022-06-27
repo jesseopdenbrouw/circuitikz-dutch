@@ -363,7 +363,7 @@ In Figure~\ref{fig:gelmodelopampinverter} you see a network with a simplified mo
             to[R, R=$R_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
  (2.center) to[short] ++(1,0)
             to[open] ++(0,-2)
-            to[R, a=$R_{in}$, v^<=$U_{in}$,*-] ++(0,2) 
+            to[R, a=$R_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
  (2.center) to[short] ++(0,1)
             to[R=$R_2$] ++(5.5,0)
             to[short,-*] ++(0,-1) node (3) {}
@@ -386,7 +386,7 @@ The code to produce this circuit is show below:
             to[R, R=$R_1$, -*] ++(2,0) node (2) {} node[below] {$U_x$}
  (2.center) to[short] ++(1,0)
             to[open] ++(0,-2)
-            to[R, a=$R_{in}$, v^<=$U_{in}$,*-] ++(0,2) 
+            to[R, a=$R_{in}$, v^>=$U_{in}$,*-] ++(0,2) 
  (2.center) to[short] ++(0,1)
             to[R=$R_2$] ++(5.5,0)
             to[short,-*] ++(0,-1) node (3) {}
